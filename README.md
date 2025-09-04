@@ -1,67 +1,186 @@
-# Payload Blank Template
+# Pet Wellness E-commerce App
 
-This template comes configured with the bare minimum to get started on anything you need.
+A modern, full-stack pet wellness e-commerce application built with Next.js, Payload CMS, and Capacitor for cross-platform deployment.
 
-## Quick start
+## 🐾 Features
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+- **E-commerce Storefront**: Complete shopping experience with product catalog, cart, and checkout
+- **Product Management**: Admin panel for managing products, categories, and inventory
+- **User Authentication**: Secure user registration and login system
+- **Order Management**: Complete order processing and tracking system
+- **Mobile App**: Cross-platform mobile app using Capacitor
+- **Responsive Design**: Modern UI built with Tailwind CSS and Radix UI components
+- **Content Management**: Rich content editing with Payload CMS
+- **Search & Filtering**: Advanced product search and category filtering
 
-## Quick Start - local setup
+## 🛍️ Product Categories
 
-To spin up this template locally, follow these steps:
+- **Training & Cleanup**: Dog training pads, cleaning supplies
+- **Waste Management**: Biodegradable poop bags, waste disposal
+- **Health & Wellness**: Natural supplements, calming treats
+- **Feeding Essentials**: Stainless steel bowls, feeding accessories
+- **Safety & Comfort**: Orthopedic beds, safety products
 
-### Clone
+## 🚀 Tech Stack
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+### Frontend
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first CSS framework
+- **Radix UI** - Accessible component primitives
+- **Lucide React** - Beautiful icons
 
-### Development
+### Backend & CMS
+- **Payload CMS 3.54** - Headless CMS with admin panel
+- **PostgreSQL** - Primary database
+- **Lexical Editor** - Rich text editing
+- **Sharp** - Image processing
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URI` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+### Mobile
+- **Capacitor** - Cross-platform mobile app framework
+- **iOS & Android** support
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+### Development Tools
+- **Docker** - Containerized development environment
+- **ESLint** - Code linting
+- **Prettier** - Code formatting
+- **Playwright** - E2E testing
+- **Vitest** - Unit testing
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+## 📋 Prerequisites
 
-#### Docker (Optional)
+- **Node.js** 18.20.2+ or 20.9.0+
+- **pnpm** 9+ or 10+
+- **PostgreSQL** database
+- **Docker** (optional, for containerized development)
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+## 🛠️ Installation & Setup
 
-To do so, follow these steps:
+### 1. Clone the Repository
 
-- Modify the `MONGODB_URI` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URI` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+```bash
+git clone <repository-url>
+cd pet-wellness-app
+```
 
-## How it works
+### 2. Install Dependencies
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+```bash
+pnpm install
+```
 
-### Collections
+### 3. Environment Configuration
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+Create a `.env` file in the root directory:
 
-- #### Users (Authentication)
+```env
+# Database
+DATABASE_URI=postgresql://username:password@localhost:5432/pet_wellness_db
 
-  Users are auth-enabled collections that have access to the admin panel.
+# Payload CMS
+PAYLOAD_SECRET=your-secret-key-here
 
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+# Next.js
+NEXTAUTH_SECRET=your-nextauth-secret
+NEXTAUTH_URL=http://localhost:3000
 
-- #### Media
+# Optional: Payload Cloud
+PAYLOAD_CLOUD_EMAIL=your-email@example.com
+PAYLOAD_CLOUD_API_KEY=your-api-key
+```
 
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+### 4. Database Setup
 
-### Docker
+Ensure PostgreSQL is running and create a database:
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+```sql
+CREATE DATABASE pet_wellness_db;
+```
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
+### 5. Start Development Server
 
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
+```bash
+pnpm dev
+```
 
-## Questions
+The application will be available at:
+- **Frontend**: http://localhost:3000
+- **Admin Panel**: http://localhost:3000/admin
 
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+## �� Docker Development
+
+For containerized development:
+
+```bash
+# Start services
+docker-compose up
+
+# Run in background
+docker-compose up -d
+
+# Stop services
+docker-compose down
+```
+
+## 📱 Mobile App Development
+
+### iOS Setup
+
+```bash
+# Install iOS dependencies
+cd ios && pod install && cd ..
+
+# Build for iOS
+npx cap build ios
+
+# Open in Xcode
+npx cap open ios
+```
+
+### Android Setup
+
+```bash
+# Build for Android
+npx cap build android
+
+# Open in Android Studio
+npx cap open android
+```
+
+## �� Testing
+
+```bash
+# Run unit tests
+pnpm test:int
+
+# Run E2E tests
+pnpm test:e2e
+
+# Run all tests
+pnpm test
+```
+
+## �� Build & Deployment
+
+### Production Build
+
+```bash
+pnpm build
+pnpm start
+```
+
+### Mobile App Build
+
+```bash
+# Build web assets
+pnpm build
+
+# Sync with mobile platforms
+npx cap sync
+
+# Build mobile apps
+npx cap build ios
+npx cap build android
+```
+
+## ��️ Project Structure
