@@ -1,18 +1,30 @@
-import React from 'react'
-import './styles.css'
+import type React from 'react'
+import type { Metadata } from 'next'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
+import { CartProvider } from '@/contexts/cart-context'
+import { AuthProvider } from '@/contexts/auth-context'
 
-export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+// local imports
+import './globals.css'
+
+export const metadata: Metadata = {
+  title: 'Pet Wellness Essentials',
+  description: 'Quality pet care products for your furry friends',
+  generator: 'v0.app',
 }
 
-export default async function RootLayout(props: { children: React.ReactNode }) {
-  const { children } = props
-
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
     <html lang="en">
-      <body>
-        <main>{children}</main>
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+        <AuthProvider>
+          <CartProvider>{children}</CartProvider>
+        </AuthProvider>
       </body>
     </html>
   )
